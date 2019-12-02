@@ -1,0 +1,7 @@
+For our program there are three essential algorithms being implemented: bubblesort, mergesort and quicksort.
+
+The bubblesort algorithm is implemented with a nested for loop which has a complexity of O(N^2). The function to format the bubblesort does not contain any loops and its instructions merely have a complexity of O(1).
+
+The mergesort algorithm is implemented with
+
+The quicksort algorithm is implemented with
