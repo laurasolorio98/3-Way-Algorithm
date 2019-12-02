@@ -13,6 +13,7 @@ var MSortHolder = [];
 
 //Quick Sort Variables
 var QSortHolder = [];
+var QCounter = 0;
 
 					
 /*
@@ -46,7 +47,49 @@ function Bformat(values){
 }
 
 
+// quicksort -- in progress
+function quickSort(values, left, right){
+   var len = values.length, 
+   pivot,
+   partitionIndex;
+
+
+  if(left < right){
+    pivot = right;
+    partitionIndex = partition(values, pivot, left, right);
+    
+   //sort left and right
+   quickSort(values, left, partitionIndex - 1);
+   quickSort(values, partitionIndex + 1, right);
+  }
+  return values;
+}
+
+function partition(values, pivot, left, right){
+   var pivotValue = values[pivot],
+       partitionIndex = left;
+
+   for(var i = left; i < right; i++){
+    if(values[i] < pivotValue){
+      swap(values, i, partitionIndex);
+      partitionIndex++;
+    }
+  }
+  swap(values, right, partitionIndex);
+  return partitionIndex;
+}
+
+function swap(values, i, j){
+   var temp = values[i];
+   values[i] = values[j];
+   values[j] = temp;
+}
 		
-		
-		
-		
+//Formats array value into string
+//String is then stored in QSortHolder Array
+function Qformat(values){
+	var converter = values.toString();
+	converter = "[" +converter +"]"
+	QSortHolder[QCounter]=converter;
+	QCounter++;
+}	
