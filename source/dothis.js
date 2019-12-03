@@ -7,14 +7,49 @@
 //Bubble Sort Varibales
 var BSortHolder = [];
 var BCounter = 0;
+var xaxis=10;
+var yaxis=10;
 
 //Merge Sort Variables
 var MSortHolder = [];
+MSortHolder[1]="";
+MSortHolder[2]="";
+MSortHolder[3]="";
+MSortHolder[4]="";
+var MHolder=[];
+var MCounter = 2;
+var co=0;
 
 //Quick Sort Variables
 var QSortHolder = [];
-var QCounter = 0;
 
+function draw_grid( rctx, rminor, rmajor, rstroke, rfill  )
+{
+    rctx.save( );
+    rctx.strokeStyle = rstroke;
+    rctx.fillStyle = rfill;
+    let width = rctx.canvas.width;
+    let height = rctx.canvas.height;
+    for ( var ix = 0; ix < width; ix += rminor )
+    {
+        rctx.beginPath( );
+        rctx.moveTo( ix, 0 );
+        rctx.lineTo( ix, height );
+        rctx.lineWidth = ( ix % rmajor == 0 ) ? 0.5 : 0.25;
+        rctx.stroke( );
+        if ( ix % rmajor == 0 ) { rctx.fillText( ix/10, ix, 10 ); }
+    }
+    for ( var iy = 0; iy < height; iy += rminor )
+    {
+        rctx.beginPath( );
+        rctx.moveTo( 0, iy );
+        rctx.lineTo( width, iy );
+        rctx.lineWidth = ( iy % rmajor == 0 ) ? 0.5 : 0.25;
+        rctx.stroke( );
+        if ( iy % rmajor == 0 ) {rctx.fillText( iy/10, 0, iy + 10 );}
+    }
+    rctx.restore( );
+}
 					
 /*
 Bubble sort the array of chacters. After each swap a function will be called to 
@@ -47,49 +82,80 @@ function Bformat(values){
 }
 
 
-// quicksort -- in progress
-function quickSort(values, left, right){
-   var len = values.length, 
-   pivot,
-   partitionIndex;
-
-
-  if(left < right){
-    pivot = right;
-    partitionIndex = partition(values, pivot, left, right);
-    
-   //sort left and right
-   quickSort(values, left, partitionIndex - 1);
-   quickSort(values, partitionIndex + 1, right);
+// mergesort -- in progress
+// Merge Sort Implentation (Recursion)
+function mergeSort (values) {
+  // No need to sort the array if the array only has one element or empty
+  if (values.length <= 1) {
+    return values;
   }
-  return values;
+  // In order to divide the array in half, we need to figure out the middle
+  const middle = Math.floor(values.length / 2);
+
+  // This is where we will be dividing the array into left and right
+  const left = values.slice(0, middle);
+  const right = values.slice(middle);
+  return merge(
+    mergeSort(left), mergeSort(right)
+  );
 }
 
-function partition(values, pivot, left, right){
-   var pivotValue = values[pivot],
-       partitionIndex = left;
-
-   for(var i = left; i < right; i++){
-    if(values[i] < pivotValue){
-      swap(values, i, partitionIndex);
-      partitionIndex++;
+// Merge the two arrays: left and right
+function merge (left, right) {
+  let resultArray = [], leftIndex = 0, rightIndex = 0;
+  // We will concatenate values into the resultArray in order
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      resultArray.push(left[leftIndex]);
+      leftIndex++; // move left array cursor
+    } else {
+      resultArray.push(right[rightIndex]);
+      rightIndex++; // move right array cursor
     }
   }
-  swap(values, right, partitionIndex);
-  return partitionIndex;
+	Mformat(resultArray.concat(left.slice(leftIndex)).concat(right.slice(rightIndex)));
+  // We need to concat here because there will be one element remaining
+  // from either left OR the right
+  return resultArray
+          .concat(left.slice(leftIndex))
+          .concat(right.slice(rightIndex));
 }
 
-function swap(values, i, j){
-   var temp = values[i];
-   values[i] = values[j];
-   values[j] = temp;
+//Formats array value into string
+//String is then stored in BSortHolder Array
+function Mformat(left){
+	var converter = left.toString();
+	converter = "[" +converter +"]";
+	if(left.length==1){
+		console.log(left);
+		MSortHolder[0]=MSortHolder[0]+ "    "+converter;
+	}
+	else if(left.length==2){
+		console.log(left);
+		MSortHolder[1]=MSortHolder[1]+"   "+converter;
+	}
+	else if(left.length==3){
+		console.log(left);
+		MSortHolder[2]=MSortHolder[2]+" "+converter;
+	}
+	else if(left.length==6){
+		console.log(left);
+		MSortHolder[3]=MSortHolder[3]+"   "+converter;
+	}
+	else if(left.length==12){
+		console.log(left);
+		MSortHolder[4]=MSortHolder[4]+"  "+converter;
+	}
+	else {
+		MSortHolder[MCounter]=converter;
+		MCounter++;
+	}
+	
+}	
+
+function printThis(square, arrayDisplay){
+	square.beginPath();
+	square.fillText(arrayDisplay, xaxis ,yaxis);
+	square.fill();
 }
 		
-//Formats array value into string
-//String is then stored in QSortHolder Array
-function Qformat(values){
-	var converter = values.toString();
-	converter = "[" +converter +"]"
-	QSortHolder[QCounter]=converter;
-	QCounter++;
-}	
