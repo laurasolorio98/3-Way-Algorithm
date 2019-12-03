@@ -35,27 +35,43 @@
 	var context3 = canvas3.getContext( "2d" );
 	
 	var startString =[ "8", "A", "1", "5", "9", "3", "4", "7", "9", "0", "8", "5"];
-	var startStringM =[ "8", "A", "1", "5", "9", "3", "4", "7", "9", "0", "8", "5"];
+    var startStringM = ["8", "A", "1", "5", "9", "3", "4", "7", "9", "0", "8", "5"];
+    var startStringQ = ["8", "A", "1", "5", "9", "3", "4", "7", "9", "0", "8", "5"];
+
+    //var startString = ["B", "6", "0", "0", "5", "A", "6", "2", "7", "B", "2", "3"];
+    //var startStringM = ["B", "6", "0", "0", "5", "A", "6", "2", "7", "B", "2", "3"];
+    //var startStringQ = ["B", "6", "0", "0", "5", "A", "6", "2", "7", "B", "2", "3"];
+
 	var temp="";
 	//BubbleSort Algorithm
 	bubbleSort(startString);
-	for(var j=0;j<12;j++){
+    for (var j = 0; j < 12; j++)
+    {
 		   temp=temp+"["+startStringM[j]+"]";
 	}
 	MSortHolder[0]=temp;
 	//Merge Sort Algorithm
 	mergeSort(startStringM);
-	
+
+    //quicksort algorithm
+    quickSort(startStringQ, 0, startStringQ.length - 1);
+
 	//Calls function to display text
 	//There is a fixed delay after easy pass
 	for(var i = 0; i < 36; i++){
 		(function (i){
-			setTimeout(function(){
+            setTimeout(function ()
+            {
 				printThis(context,BSortHolder[i]);
-				if(i<5){
-				printThis(context2,MSortHolder[i]);
-				}
-				//printThis(context3,QSortHolder[i]);
+
+                if (i < 5)
+                {
+				    printThis(context2,MSortHolder[i]);
+                }
+                if (i < QCounter)
+                {
+                    printThis(context3, QSortHolder[i]);
+                }
 				
 				yaxis=yaxis+20;
 			}, 200*i);

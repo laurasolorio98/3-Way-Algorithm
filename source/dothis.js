@@ -1,6 +1,6 @@
 /* Laura Solorio laurasolorio98@csu.fullerton.edu
    Alyssa Bright alyssabright@csu.fullerton.edu
-   Brandon btomich@csu.fullerton.edu
+   Brandon Tomich btomich@csu.fullerton.edu
    File Description: This javascript file contains all functions
 */
 
@@ -22,6 +22,7 @@ var co=0;
 
 //Quick Sort Variables
 var QSortHolder = [];
+var QCounter = 0;
 
 function draw_grid( rctx, rminor, rmajor, rstroke, rfill  )
 {
@@ -158,4 +159,70 @@ function printThis(square, arrayDisplay){
 	square.fillText(arrayDisplay, xaxis ,yaxis);
 	square.fill();
 }
-		
+
+
+
+// quicksort
+function quickSort(values, left, right) {
+	Qformat(values);
+	var partitionIndex;
+	//debugger;
+	//if the length of the list is less than one or the it is empty no need to sort 
+	if (values.length > 1) {
+		partitionIndex = partition(values, left, right);
+
+		//sort left and right
+		if (left < partitionIndex - 1) {
+			quickSort(values, left, partitionIndex - 1);
+		}
+		if (partitionIndex + 1 < right) {
+			quickSort(values, partitionIndex, right);
+		}
+	}
+
+	return values;
+}
+
+function partition(values, left, right) {
+	//choosing the center as the pivot because on average this tends to be most efficient 
+	//since it has the least chance of being the largest or smallest element in the list
+	var index = Math.floor((right + left) / 2),
+		pivotValue = values[index],
+		j = left,
+		k = right;
+	console.log(values);
+	console.log("Left = " + left + "and right = " + right + " pivot value  = " + pivotValue);
+	//loop until the left index passes over the right 
+	while (j <= k) {
+		//increment the index left if j is less than pivot 
+		while (values[j] < pivotValue) { ++j; }
+		//decriment the index right if k is greator than pivot 
+		while (values[k] > pivotValue) { --k; }
+
+		//swap indexes 
+		if (j <= k) {
+			swap(values, j, k);
+			++j;
+			--k;
+		}
+	}
+
+	return j;
+}
+
+function swap(values, i, j)
+{
+	var temp = values[i];
+	values[i] = values[j];
+	values[j] = temp;
+}
+
+//Formats array value into string
+//String is then stored in QSortHolder Array
+function Qformat(values)
+{
+	var converter = values.toString();
+	converter = "[" + converter + "]"
+	QSortHolder[QCounter] = converter;
+	QCounter++;
+}	
