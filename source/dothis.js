@@ -2,6 +2,22 @@
    Alyssa Bright alyssabright@csu.fullerton.edu
    Brandon Tomich btomich@csu.fullerton.edu
    File Description: This javascript file contains all functions
+  
+   Bubble Sort Functions:
+   	bubbleSort: Function performing the algorithm to bubble sort the array of characters
+	Bformat: Formats bubble sort in an array of strings.
+   Merge Sort Functions:
+   	mergeSort: Performs merge Sort funtion and then calls merge function
+	merge: Merges spliced array
+	Mformat: Formats merge sort values into an array of strings
+   Quick Sort Functions:
+   	quickSort: eprform quick sort algorithm
+	partition: Chooses the center as the pivot 
+	swap: swap values
+	Qformat: Formats quick sort cvalues in an array of strings
+   Additional Functions:
+   	draw_grid: Draws grid to be able to plot the ouputs on a set position on the graph
+   	printthis: prints out the arrays on the html page
 */
 
 //Bubble Sort Varibales
@@ -128,23 +144,18 @@ function Mformat(left){
 	var converter = left.toString();
 	converter = "[" +converter +"]";
 	if(left.length==1){
-		console.log(left);
 		MSortHolder[0]=MSortHolder[0]+ "    "+converter;
 	}
 	else if(left.length==2){
-		console.log(left);
 		MSortHolder[1]=MSortHolder[1]+"   "+converter;
 	}
 	else if(left.length==3){
-		console.log(left);
 		MSortHolder[2]=MSortHolder[2]+" "+converter;
 	}
 	else if(left.length==6){
-		console.log(left);
 		MSortHolder[3]=MSortHolder[3]+"   "+converter;
 	}
 	else if(left.length==12){
-		console.log(left);
 		MSortHolder[4]=MSortHolder[4]+"  "+converter;
 	}
 	else {
