@@ -22,6 +22,7 @@ Contents (Files in the .zip submission):
 Setup and Installation (if any): 
 1. Download and extract zip file.
 2. Once downloaded, navigate to index.html file.(3335-p3-LAB -> Index -> index.html)
+3. Open html file with browser.
 
 Features:
 1. 3 Algorithms were implemented within this project. The 3 algorithms race to test the overall passes it takes to sort through a string.
