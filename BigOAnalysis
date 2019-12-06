@@ -1,7 +1,28 @@
 For our program there are three essential algorithms being implemented: bubblesort, mergesort and quicksort.
+Additionally, we needed to create a grid to display the sorting.
 
-The bubblesort algorithm is implemented with a nested for loop which has a complexity of O(N^2). The function to format the bubblesort does not contain any loops and its instructions merely have a complexity of O(1).
+The draw_grid function is used to illustrate the sorting. It contains two separate for loops each with a complexity of O(N).
 
-The mergesort algorithm is implemented with
+This starts our complexity at O(N) + O(N) = 2*O(N).
 
-The quicksort algorithm is implemented with
+The bubblesort algorithm is implemented with a nested for loop which has a complexity of O(N^2). 
+The function to format the bubblesort does not contain any loops and its instructions merely have a complexity of O(1).
+
+Our complexity is now 2*O(N) + O(N^2) + O(1).
+
+The mergesort algorithm is implemented with a while loop that has a complexity of O(N).
+The mFormat and printThis functions do not contain loops, only if/else and instruction statements, making their complexities O(1).
+
+Our complexity is now 2*O(N) + O(N^2) + 3*O(1).
+
+The quicksort algorithm is implemented with a while loop containing two while loops inside of it. 
+The complexity of the innermost while loop is O(log(n)). The outer while loops increase the complexity by adding two loops.
+The total complexity becomes O(2N*log(N)). The other functions related to this algorithm have a complexity of O(1).
+
+Our complexity is now 2*O(N) + O(N^2) + 6*O(1) + O(2N*log(N)).
+
+We can simplify this complexity to our final Big O Complexity of O(N) + O(N^2) + Nlog(N).
+
+When analyzed separately, the bubblesort algorithm has the simplest complexity and the quicksort has the worst.
+When viewing the results of the algorithms, mergesort appears to be the fastest at sorting the data.
+Given that mergesort is quicker and doesn't have the worst complexity, it is the favorable algorithm to be implemented.
